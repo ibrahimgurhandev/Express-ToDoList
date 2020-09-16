@@ -1,11 +1,10 @@
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8000;
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 var db, collection;
-// const url = "mongodb+srv://demo:demo@cluster0-q2ojb.mongodb.net/test?retryWrites=true";
 const url = "mongodb+srv://demo:demo@cluster0.84ovu.mongodb.net/demo2?retryWrites=true&w=majority"
 const dbName = "demo2";
 
