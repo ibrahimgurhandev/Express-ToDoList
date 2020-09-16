@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -28,7 +28,6 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
-
 app.get('/', (req, res) => {
   db.collection('list').find().toArray((err, result) => {
     if (err) return console.log(err)
