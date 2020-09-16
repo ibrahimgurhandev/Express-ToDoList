@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 8000;
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -8,7 +9,7 @@ var db, collection;
 const url = "mongodb+srv://demo:demo@cluster0.84ovu.mongodb.net/demo2?retryWrites=true&w=majority"
 const dbName = "demo2";
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   MongoClient.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
