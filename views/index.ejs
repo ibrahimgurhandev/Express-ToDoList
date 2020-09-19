@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Create a To Do List</h1>
+
+    <div class="add">
+
+      <form action="/list" method="POST">
+        <input id="input" type="text"
+          placeholder="Add something to do your do list" name="toDo">
+        <button type="submit">Submit</button>
+      </form>
+
+    </div>
+
+    <div class="box">
+
+      <ul class="list">
+        <% for(var i=0; i<list.length; i++) {%>
+        <li class="list">
+          <span><%= list[i].toDo %></span>
+          <span><i class="fa fa-check-square-o"
+              aria-hidden="true"></i></span>
+          <span><i class="fa fa-trash-o"
+              aria-hidden="true"></i></span>
+
+        </li>
+        <% } %>
+      </ul>
+
+    </div>
+    <button class="deleteCompleted"> Delete All Completed
+      Items</button>
+    <p>Click on the trash icon when completed
+      to Delete from your list</p>
+
+
+
+
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+
+</html>
