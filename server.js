@@ -1,14 +1,14 @@
-const PORT = process.env.PORT || 8080;
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 var db, collection;
+// const url = "mongodb+srv://demo:demo@cluster0-q2ojb.mongodb.net/test?retryWrites=true";
 const url = "mongodb+srv://demo:demo@cluster0.84ovu.mongodb.net/demo2?retryWrites=true&w=majority"
 const dbName = "demo2";
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
   MongoClient.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
+
 app.get('/', (req, res) => {
   db.collection('list').find().toArray((err, result) => {
     if (err) return console.log(err)
@@ -38,7 +39,8 @@ app.get('/', (req, res) => {
 
 app.post('/list', (req, res) => {
   db.collection('list').insertOne({
-    toDo: req.body.toDo
+    toDo: req.body.toDo,
+    completed: false
   }, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
@@ -48,6 +50,15 @@ app.post('/list', (req, res) => {
 
 
 app.delete('/list', (req, res) => {
+  db.collection('list').findOneAndDelete({
+    toDo: req.body.toDo
+  }, (err, result) => {
+    if (err) return res.send(500, err)
+    res.send('Message deleted!')
+  })
+})
+
+app.delete('/completed', (req, res) => {
   db.collection('list').findOneAndDelete({
     toDo: req.body.toDo
   }, (err, result) => {
