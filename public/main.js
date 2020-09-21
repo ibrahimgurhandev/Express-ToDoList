@@ -7,8 +7,7 @@ Array.from(complete).forEach(function (element) {
   element.addEventListener('click', function () {
 
     const toDo = this.parentNode.parentNode.childNodes[1]
-    toDo.classList.toggle("completed");\
-    todo
+    toDo.classList.toggle("completed");
   });
 });
 
